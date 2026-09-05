@@ -1,0 +1,14 @@
+version: '3.8'
+
+# Docker Compose Override for Local Development and Hot-Reloading
+services:
+  server:
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - LOG_LEVEL=DEBUG
+
+  worker:
+    command: celery -A worker_app.celery_app.celery_app worker --loglevel=info --concurrency=2
+
+  client:
+    command: npm run dev

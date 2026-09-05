@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'crypto_forensics_server'
+    static_configs:
+      - targets: ['server:8000']
+
+  - job_name: 'crypto_forensics_worker'
+    static_configs:
+      - targets: ['worker:8000']
